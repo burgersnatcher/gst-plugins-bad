@@ -1,3 +1,9 @@
+gst-plugins-bad1.0 (1.17.2+20211119pexip-3) pexip-bullseye; urgency=medium
+
+  * bespoke openh264
+
+ -- Egil Hasting <eh@synergysky.com>  Fri, 19 Nov 2021 14:52:11 +0200
+
 gst-plugins-bad1.0 (1.17.2+20210621pexip-2) pexip-bullseye; urgency=medium
 
   * Install libgstopenh264.so

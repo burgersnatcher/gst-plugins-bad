@@ -166,14 +166,14 @@ static void gst_openh264enc_set_rate_control (GstOpenh264Enc * openh264enc,
 
 #define DEFAULT_BITRATE            (128000)
 #define DEFAULT_MAX_BITRATE        (UNSPECIFIED_BIT_RATE)
-#define DEFAULT_GOP_SIZE           (90)
+#define DEFAULT_GOP_SIZE           (1800)
 #define DEFAULT_MAX_SLICE_SIZE     (1500000)
 #define START_FRAMERATE            30
 #define DEFAULT_USAGE_TYPE         CAMERA_VIDEO_REAL_TIME
-#define DEFAULT_RATE_CONTROL       RC_QUALITY_MODE
+#define DEFAULT_RATE_CONTROL       RC_BITRATE_MODE
 #define DEFAULT_MULTI_THREAD       0
 #define DEFAULT_ENABLE_DENOISE     FALSE
-#define DEFAULT_ENABLE_FRAME_SKIP  FALSE
+#define DEFAULT_ENABLE_FRAME_SKIP  TRUE
 #define DEFAULT_DEBLOCKING_MODE GST_OPENH264_DEBLOCKING_ON
 #define DEFAULT_BACKGROUND_DETECTION TRUE
 #define DEFAULT_ADAPTIVE_QUANTIZATION TRUE
@@ -368,6 +368,37 @@ gst_openh264enc_class_init (GstOpenh264EncClass * klass)
 }
 
 static void
+gst_debugprint(GstOpenh264Enc * openh264enc)
+{
+
+  g_printerr("gop_size %"G_GUINT32_FORMAT "\n", openh264enc->gop_size);
+  g_printerr("max_slice_size %"G_GUINT32_FORMAT "\n", openh264enc->max_slice_size);
+  g_printerr("bitrate %"G_GUINT32_FORMAT "\n", openh264enc->bitrate);
+  g_printerr("max_bitrate %"G_GUINT32_FORMAT "\n", openh264enc->max_bitrate);
+  g_printerr("qp_min %"G_GUINT32_FORMAT "\n", openh264enc->qp_min);
+  g_printerr("qp_max %"G_GUINT32_FORMAT "\n", openh264enc->qp_max);
+  g_printerr("framerate %"G_GUINT32_FORMAT "\n", openh264enc->framerate);
+  g_printerr("multi_thread %"G_GUINT32_FORMAT "\n", openh264enc->multi_thread);
+
+  g_printerr("enable_denoise %"G_GUINT32_FORMAT "\n", openh264enc->enable_denoise);
+  g_printerr("enable_frame_skip %"G_GUINT32_FORMAT "\n", openh264enc->enable_frame_skip);
+
+  g_printerr("time_per_frame %"G_GUINT64_FORMAT "\n", openh264enc->time_per_frame);
+  g_printerr("frame_count %"G_GUINT64_FORMAT "\n", openh264enc->frame_count);
+  g_printerr("previous_timestamp %"G_GUINT64_FORMAT "\n", openh264enc->previous_timestamp);
+
+  g_printerr("background_detection %"G_GUINT32_FORMAT "\n", openh264enc->background_detection);
+  g_printerr("adaptive_quantization %"G_GUINT32_FORMAT "\n", openh264enc->adaptive_quantization);
+  g_printerr("scene_change_detection %"G_GUINT32_FORMAT "\n", openh264enc->scene_change_detection);
+
+  g_printerr("num_slices %"G_GUINT32_FORMAT "\n", openh264enc->num_slices);
+
+  g_printerr("bitrate_changed %"G_GUINT32_FORMAT "\n", openh264enc->bitrate_changed);
+  g_printerr("max_bitrate_changed %"G_GUINT32_FORMAT "\n", openh264enc->max_bitrate_changed);
+
+}
+
+static void
 gst_openh264enc_init (GstOpenh264Enc * openh264enc)
 {
   openh264enc->gop_size = DEFAULT_GOP_SIZE;
@@ -398,7 +429,9 @@ gst_openh264enc_init (GstOpenh264Enc * openh264enc)
   openh264enc->max_bitrate_changed = FALSE;
   gst_openh264enc_set_usage_type (openh264enc, CAMERA_VIDEO_REAL_TIME);
   gst_openh264enc_set_rate_control (openh264enc, RC_QUALITY_MODE);
+  gst_debugprint(openh264enc);
 }
+
 
 static void
 gst_openh264enc_set_usage_type (GstOpenh264Enc * openh264enc, gint usage_type)
@@ -787,7 +820,7 @@ gst_openh264enc_set_format (GstVideoEncoder * encoder,
 
   openh264enc->bitrate_changed = FALSE;
   openh264enc->max_bitrate_changed = FALSE;
-
+  gst_debugprint(openh264enc);
   GST_OBJECT_UNLOCK (openh264enc);
 
   if (ret != cmResultSuccess) {
