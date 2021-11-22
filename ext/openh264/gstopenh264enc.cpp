@@ -35,6 +35,7 @@
 #include <gst/video/gstvideoencoder.h>
 #include <string.h>
 
+
 GST_DEBUG_CATEGORY_STATIC (gst_openh264enc_debug_category);
 #define GST_CAT_DEFAULT gst_openh264enc_debug_category
 
@@ -180,7 +181,7 @@ static void gst_openh264enc_set_rate_control (GstOpenh264Enc * openh264enc,
 #define DEFAULT_SCENE_CHANGE_DETECTION TRUE
 #define DEFAULT_SLICE_MODE      GST_OPENH264_SLICE_MODE_N_SLICES
 #define DEFAULT_NUM_SLICES      1
-#define DEFAULT_COMPLEXITY      MEDIUM_COMPLEXITY
+#define DEFAULT_COMPLEXITY      HIGH_COMPLEXITY
 #define DEFAULT_QP_MIN             0
 #define DEFAULT_QP_MAX             51
 
@@ -370,30 +371,30 @@ gst_openh264enc_class_init (GstOpenh264EncClass * klass)
 static void
 gst_debugprint(GstOpenh264Enc * openh264enc)
 {
-  GST_CAT_INFO (GST_CAT_PADS,"gop_size %"G_GUINT32_FORMAT "\n", openh264enc->gop_size);
-  GST_CAT_INFO (GST_CAT_PADS,"max_slice_size %"G_GUINT32_FORMAT "\n", openh264enc->max_slice_size);
-  GST_CAT_INFO (GST_CAT_PADS,"bitrate %"G_GUINT32_FORMAT "\n", openh264enc->bitrate);
-  GST_CAT_INFO (GST_CAT_PADS,"max_bitrate %"G_GUINT32_FORMAT "\n", openh264enc->max_bitrate);
-  GST_CAT_INFO (GST_CAT_PADS,"qp_min %"G_GUINT32_FORMAT "\n", openh264enc->qp_min);
-  GST_CAT_INFO (GST_CAT_PADS,"qp_max %"G_GUINT32_FORMAT "\n", openh264enc->qp_max);
-  GST_CAT_INFO (GST_CAT_PADS,"framerate %"G_GUINT32_FORMAT "\n", openh264enc->framerate);
-  GST_CAT_INFO (GST_CAT_PADS,"multi_thread %"G_GUINT32_FORMAT "\n", openh264enc->multi_thread);
+  GST_WARNING ("gop_size %"G_GUINT32_FORMAT "\n", openh264enc->gop_size);
+  GST_WARNING ("max_slice_size %"G_GUINT32_FORMAT "\n", openh264enc->max_slice_size);
+  GST_WARNING ("bitrate %"G_GUINT32_FORMAT "\n", openh264enc->bitrate);
+  GST_WARNING ("max_bitrate %"G_GUINT32_FORMAT "\n", openh264enc->max_bitrate);
+  GST_WARNING ("qp_min %"G_GUINT32_FORMAT "\n", openh264enc->qp_min);
+  GST_WARNING ("qp_max %"G_GUINT32_FORMAT "\n", openh264enc->qp_max);
+  GST_WARNING ("framerate %"G_GUINT32_FORMAT "\n", openh264enc->framerate);
+  GST_WARNING ("multi_thread %"G_GUINT32_FORMAT "\n", openh264enc->multi_thread);
 
-  GST_CAT_INFO (GST_CAT_PADS,"enable_denoise %"G_GUINT32_FORMAT "\n", openh264enc->enable_denoise);
-  GST_CAT_INFO (GST_CAT_PADS,"enable_frame_skip %"G_GUINT32_FORMAT "\n", openh264enc->enable_frame_skip);
+  GST_WARNING ("enable_denoise %"G_GUINT32_FORMAT "\n", openh264enc->enable_denoise);
+  GST_WARNING ("enable_frame_skip %"G_GUINT32_FORMAT "\n", openh264enc->enable_frame_skip);
 
-  GST_CAT_INFO (GST_CAT_PADS,"time_per_frame %"G_GUINT64_FORMAT "\n", openh264enc->time_per_frame);
-  GST_CAT_INFO (GST_CAT_PADS,"frame_count %"G_GUINT64_FORMAT "\n", openh264enc->frame_count);
-  GST_CAT_INFO (GST_CAT_PADS,"previous_timestamp %"G_GUINT64_FORMAT "\n", openh264enc->previous_timestamp);
+  GST_WARNING ("time_per_frame %"G_GUINT64_FORMAT "\n", openh264enc->time_per_frame);
+  GST_WARNING ("frame_count %"G_GUINT64_FORMAT "\n", openh264enc->frame_count);
+  GST_WARNING ("previous_timestamp %"G_GUINT64_FORMAT "\n", openh264enc->previous_timestamp);
 
-  GST_CAT_INFO (GST_CAT_PADS,"background_detection %"G_GUINT32_FORMAT "\n", openh264enc->background_detection);
-  GST_CAT_INFO (GST_CAT_PADS,"adaptive_quantization %"G_GUINT32_FORMAT "\n", openh264enc->adaptive_quantization);
-  GST_CAT_INFO (GST_CAT_PADS,"scene_change_detection %"G_GUINT32_FORMAT "\n", openh264enc->scene_change_detection);
+  GST_WARNING ("background_detection %"G_GUINT32_FORMAT "\n", openh264enc->background_detection);
+  GST_WARNING ("adaptive_quantization %"G_GUINT32_FORMAT "\n", openh264enc->adaptive_quantization);
+  GST_WARNING ("scene_change_detection %"G_GUINT32_FORMAT "\n", openh264enc->scene_change_detection);
 
-  GST_CAT_INFO (GST_CAT_PADS,"num_slices %"G_GUINT32_FORMAT "\n", openh264enc->num_slices);
+  GST_WARNING ("num_slices %"G_GUINT32_FORMAT "\n", openh264enc->num_slices);
 
-  GST_CAT_INFO (GST_CAT_PADS,"bitrate_changed %"G_GUINT32_FORMAT "\n", openh264enc->bitrate_changed);
-  GST_CAT_INFO (GST_CAT_PADS,"max_bitrate_changed %"G_GUINT32_FORMAT "\n", openh264enc->max_bitrate_changed);
+  GST_WARNING ("bitrate_changed %"G_GUINT32_FORMAT "\n", openh264enc->bitrate_changed);
+  GST_WARNING ("max_bitrate_changed %"G_GUINT32_FORMAT "\n", openh264enc->max_bitrate_changed);
 
 }
 
