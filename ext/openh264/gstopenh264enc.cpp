@@ -370,31 +370,30 @@ gst_openh264enc_class_init (GstOpenh264EncClass * klass)
 static void
 gst_debugprint(GstOpenh264Enc * openh264enc)
 {
+  GST_CAT_INFO (GST_CAT_PADS,"gop_size %"G_GUINT32_FORMAT "\n", openh264enc->gop_size);
+  GST_CAT_INFO (GST_CAT_PADS,"max_slice_size %"G_GUINT32_FORMAT "\n", openh264enc->max_slice_size);
+  GST_CAT_INFO (GST_CAT_PADS,"bitrate %"G_GUINT32_FORMAT "\n", openh264enc->bitrate);
+  GST_CAT_INFO (GST_CAT_PADS,"max_bitrate %"G_GUINT32_FORMAT "\n", openh264enc->max_bitrate);
+  GST_CAT_INFO (GST_CAT_PADS,"qp_min %"G_GUINT32_FORMAT "\n", openh264enc->qp_min);
+  GST_CAT_INFO (GST_CAT_PADS,"qp_max %"G_GUINT32_FORMAT "\n", openh264enc->qp_max);
+  GST_CAT_INFO (GST_CAT_PADS,"framerate %"G_GUINT32_FORMAT "\n", openh264enc->framerate);
+  GST_CAT_INFO (GST_CAT_PADS,"multi_thread %"G_GUINT32_FORMAT "\n", openh264enc->multi_thread);
 
-  g_printerr("gop_size %"G_GUINT32_FORMAT "\n", openh264enc->gop_size);
-  g_printerr("max_slice_size %"G_GUINT32_FORMAT "\n", openh264enc->max_slice_size);
-  g_printerr("bitrate %"G_GUINT32_FORMAT "\n", openh264enc->bitrate);
-  g_printerr("max_bitrate %"G_GUINT32_FORMAT "\n", openh264enc->max_bitrate);
-  g_printerr("qp_min %"G_GUINT32_FORMAT "\n", openh264enc->qp_min);
-  g_printerr("qp_max %"G_GUINT32_FORMAT "\n", openh264enc->qp_max);
-  g_printerr("framerate %"G_GUINT32_FORMAT "\n", openh264enc->framerate);
-  g_printerr("multi_thread %"G_GUINT32_FORMAT "\n", openh264enc->multi_thread);
+  GST_CAT_INFO (GST_CAT_PADS,"enable_denoise %"G_GUINT32_FORMAT "\n", openh264enc->enable_denoise);
+  GST_CAT_INFO (GST_CAT_PADS,"enable_frame_skip %"G_GUINT32_FORMAT "\n", openh264enc->enable_frame_skip);
 
-  g_printerr("enable_denoise %"G_GUINT32_FORMAT "\n", openh264enc->enable_denoise);
-  g_printerr("enable_frame_skip %"G_GUINT32_FORMAT "\n", openh264enc->enable_frame_skip);
+  GST_CAT_INFO (GST_CAT_PADS,"time_per_frame %"G_GUINT64_FORMAT "\n", openh264enc->time_per_frame);
+  GST_CAT_INFO (GST_CAT_PADS,"frame_count %"G_GUINT64_FORMAT "\n", openh264enc->frame_count);
+  GST_CAT_INFO (GST_CAT_PADS,"previous_timestamp %"G_GUINT64_FORMAT "\n", openh264enc->previous_timestamp);
 
-  g_printerr("time_per_frame %"G_GUINT64_FORMAT "\n", openh264enc->time_per_frame);
-  g_printerr("frame_count %"G_GUINT64_FORMAT "\n", openh264enc->frame_count);
-  g_printerr("previous_timestamp %"G_GUINT64_FORMAT "\n", openh264enc->previous_timestamp);
+  GST_CAT_INFO (GST_CAT_PADS,"background_detection %"G_GUINT32_FORMAT "\n", openh264enc->background_detection);
+  GST_CAT_INFO (GST_CAT_PADS,"adaptive_quantization %"G_GUINT32_FORMAT "\n", openh264enc->adaptive_quantization);
+  GST_CAT_INFO (GST_CAT_PADS,"scene_change_detection %"G_GUINT32_FORMAT "\n", openh264enc->scene_change_detection);
 
-  g_printerr("background_detection %"G_GUINT32_FORMAT "\n", openh264enc->background_detection);
-  g_printerr("adaptive_quantization %"G_GUINT32_FORMAT "\n", openh264enc->adaptive_quantization);
-  g_printerr("scene_change_detection %"G_GUINT32_FORMAT "\n", openh264enc->scene_change_detection);
+  GST_CAT_INFO (GST_CAT_PADS,"num_slices %"G_GUINT32_FORMAT "\n", openh264enc->num_slices);
 
-  g_printerr("num_slices %"G_GUINT32_FORMAT "\n", openh264enc->num_slices);
-
-  g_printerr("bitrate_changed %"G_GUINT32_FORMAT "\n", openh264enc->bitrate_changed);
-  g_printerr("max_bitrate_changed %"G_GUINT32_FORMAT "\n", openh264enc->max_bitrate_changed);
+  GST_CAT_INFO (GST_CAT_PADS,"bitrate_changed %"G_GUINT32_FORMAT "\n", openh264enc->bitrate_changed);
+  GST_CAT_INFO (GST_CAT_PADS,"max_bitrate_changed %"G_GUINT32_FORMAT "\n", openh264enc->max_bitrate_changed);
 
 }
 
@@ -428,7 +427,7 @@ gst_openh264enc_init (GstOpenh264Enc * openh264enc)
   openh264enc->bitrate_changed = FALSE;
   openh264enc->max_bitrate_changed = FALSE;
   gst_openh264enc_set_usage_type (openh264enc, CAMERA_VIDEO_REAL_TIME);
-  gst_openh264enc_set_rate_control (openh264enc, RC_QUALITY_MODE);
+  gst_openh264enc_set_rate_control (openh264enc, RC_BITRATE_MODE);
   gst_debugprint(openh264enc);
 }
 
