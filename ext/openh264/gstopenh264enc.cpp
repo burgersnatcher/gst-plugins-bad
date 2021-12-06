@@ -167,12 +167,12 @@ static void gst_openh264enc_set_rate_control (GstOpenh264Enc * openh264enc,
 
 #define DEFAULT_BITRATE            (128000)
 #define DEFAULT_MAX_BITRATE        (UNSPECIFIED_BIT_RATE)
-#define DEFAULT_GOP_SIZE           (1800)
+#define DEFAULT_GOP_SIZE           (60)
 #define DEFAULT_MAX_SLICE_SIZE     (1500000)
 #define START_FRAMERATE            30
 #define DEFAULT_USAGE_TYPE         CAMERA_VIDEO_REAL_TIME
 #define DEFAULT_RATE_CONTROL       RC_BITRATE_MODE
-#define DEFAULT_MULTI_THREAD       0
+#define DEFAULT_MULTI_THREAD       1
 #define DEFAULT_ENABLE_DENOISE     FALSE
 #define DEFAULT_ENABLE_FRAME_SKIP  TRUE
 #define DEFAULT_DEBLOCKING_MODE GST_OPENH264_DEBLOCKING_ON
@@ -181,7 +181,7 @@ static void gst_openh264enc_set_rate_control (GstOpenh264Enc * openh264enc,
 #define DEFAULT_SCENE_CHANGE_DETECTION TRUE
 #define DEFAULT_SLICE_MODE      GST_OPENH264_SLICE_MODE_N_SLICES
 #define DEFAULT_NUM_SLICES      1
-#define DEFAULT_COMPLEXITY      HIGH_COMPLEXITY
+#define DEFAULT_COMPLEXITY      LOW_COMPLEXITY
 #define DEFAULT_QP_MIN             0
 #define DEFAULT_QP_MAX             51
 
