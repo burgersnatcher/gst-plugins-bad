@@ -167,7 +167,7 @@ static void gst_openh264enc_set_rate_control (GstOpenh264Enc * openh264enc,
 
 #define DEFAULT_BITRATE            (128000)
 #define DEFAULT_MAX_BITRATE        (UNSPECIFIED_BIT_RATE)
-#define DEFAULT_GOP_SIZE           (60)
+#define DEFAULT_GOP_SIZE           (1800)
 #define DEFAULT_MAX_SLICE_SIZE     (1500000)
 #define START_FRAMERATE            30
 #define DEFAULT_USAGE_TYPE         CAMERA_VIDEO_REAL_TIME
